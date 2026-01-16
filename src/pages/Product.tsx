@@ -7,6 +7,7 @@ import { ArrowLeft, Minus, Plus, ShoppingBag, Heart, Share2, ChevronLeft, Chevro
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FadeReveal, MaskReveal, TextReveal } from "@/components/animations";
+import CustomCursor from "@/components/CustomCursor";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -33,7 +34,6 @@ const Product = () => {
   const [addedToBag, setAddedToBag] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
 
   const product = products.find((p) => p.id === Number(id)) || products[0];
   const relatedProducts = products.filter((p) => p.id !== product.id).slice(0, 3);
@@ -44,19 +44,6 @@ const Product = () => {
   }, [id]);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
     if (!imageRef.current || !detailsRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -117,7 +104,6 @@ const Product = () => {
     });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       ctx.revert();
     };
   }, []);
@@ -148,15 +134,7 @@ const Product = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor />
 
       {/* Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none z-[9996] opacity-[0.02]">

@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
 import { FadeReveal, MaskReveal } from "@/components/animations";
+import CustomCursor from "@/components/CustomCursor";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -39,7 +40,6 @@ const Shop = () => {
   const [sortBy, setSortBy] = useState("featured");
   const gridRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
 
   const filteredProducts = activeCategory === "all"
     ? allProducts
@@ -55,19 +55,6 @@ const Shop = () => {
   });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
     if (!heroRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -92,7 +79,6 @@ const Shop = () => {
     });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       ctx.revert();
     };
   }, []);
@@ -119,15 +105,7 @@ const Shop = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor />
 
       {/* Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none z-[9996] opacity-[0.02]">

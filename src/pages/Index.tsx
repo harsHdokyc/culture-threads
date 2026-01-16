@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
+import CustomCursor from "@/components/CustomCursor";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import FeaturedDrop from "@/components/FeaturedDrop";
@@ -14,7 +15,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   const mainRef = useRef<HTMLElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -248,56 +248,8 @@ const Index = () => {
       });
     }, mainRef);
 
-    // Custom cursor tracking
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    // Cursor interactions
-    const handleMouseEnterLink = () => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          scale: 2.5,
-          backgroundColor: "rgba(255, 59, 48, 0.3)",
-          duration: 0.3,
-        });
-      }
-    };
-
-    const handleMouseLeaveLink = () => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          scale: 1,
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          duration: 0.3,
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // Add cursor interactions to all interactive elements
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .cursor-hover"
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnterLink);
-      el.addEventListener("mouseleave", handleMouseLeaveLink);
-    });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnterLink);
-        el.removeEventListener("mouseleave", handleMouseLeaveLink);
-      });
       ctx.revert();
     };
   }, []);
@@ -325,15 +277,7 @@ const Index = () => {
       )}
 
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9998] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor zindex="z-[9998]" />
 
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 z-[9997] bg-white/5">

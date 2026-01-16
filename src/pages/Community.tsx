@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 import Marquee from "@/components/Marquee";
 import { FadeReveal, TextReveal, ScaleReveal } from "@/components/animations";
 import lifestyle1 from "@/assets/lifestyle-1.jpg";
@@ -54,23 +55,9 @@ const CommunityPage = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const reviewsRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
     const ctx = gsap.context(() => {
       // Enhanced stats animation with counter effect
       const statItems = statsRef.current?.querySelectorAll(".stat-item");
@@ -212,7 +199,6 @@ const CommunityPage = () => {
     });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       ctx.revert();
     };
   }, []);
@@ -220,15 +206,7 @@ const CommunityPage = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor />
 
       <Header />
 

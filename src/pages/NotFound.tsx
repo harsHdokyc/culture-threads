@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Home, ArrowLeft, Search, RefreshCw } from "lucide-react";
 import { motion } from "framer-motion";
+import CustomCursor from "@/components/CustomCursor";
 
 const NotFound = () => {
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const glitchRef = useRef<HTMLHeadingElement>(null);
   const [randomLinks, setRandomLinks] = useState<Array<{ label: string; path: string }>>([]);
 
@@ -25,19 +25,6 @@ const NotFound = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
     const ctx = gsap.context(() => {
       // Glitch effect on 404
       const glitchTimeline = gsap.timeline({ repeat: -1, repeatDelay: 2 });
@@ -97,26 +84,14 @@ const NotFound = () => {
     }, containerRef);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       ctx.revert();
     };
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen bg-black text-white overflow-hidden flex items-center justify-center"
-    >
+    <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor />
 
       {/* Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none z-[9996] opacity-[0.02]">
@@ -279,7 +254,7 @@ const NotFound = () => {
           animation-delay: 1s;
         }
       `}</style>
-    </div>
+    </main>
   );
 };
 
