@@ -51,8 +51,7 @@ const Footer = () => {
             {/* Logo */}
             <Link to="/" className="group inline-block mb-6">
               <h2 className="text-6xl md:text-8xl font-black tracking-tighter group-hover:scale-105 transition-transform">
-                <span className="text-white">SO</span>
-                <span className="text-red-500">KZ</span>
+                <span className="text-white">SOKZ</span>
               </h2>
             </Link>
 
@@ -246,48 +245,7 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      {/* Bottom Brand Stamp */}
-      <div className="relative z-10 py-8 border-t border-white/10 bg-white/5">
-        <div className="section-container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-6 text-xs text-gray-600">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span>100% AUTHENTIC</span>
-              </div>
-              <span>•</span>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse delay-300" />
-                <span>MADE IN INDIA</span>
-              </div>
-              <span>•</span>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse delay-700" />
-                <span>LIMITED DROPS</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
-                alt="Visa"
-                className="h-6 opacity-50"
-              />
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
-                alt="Mastercard"
-                className="h-6 opacity-50"
-              />
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg"
-                alt="Amex"
-                className="h-6 opacity-50"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       <style>{`
         .delay-300 {
           animation-delay: 0.3s;

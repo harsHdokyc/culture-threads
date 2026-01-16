@@ -53,47 +53,41 @@ const FeaturedDrop = () => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Header animation with rotation
+      // Simple header fade in
       gsap.fromTo(
         ".featured-header",
         {
-          x: -80,
           opacity: 0,
-          rotateY: -45,
+          y: 30,
         },
         {
-          x: 0,
           opacity: 1,
-          rotateY: 0,
-          duration: 1,
-          ease: "power3.out",
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: headerRef.current,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none none",
           },
         }
       );
 
-      // Products staggered reveal with 3D effect
+      // Simple product cards fade in
       const productCards = productsRef.current?.querySelectorAll(".product-reveal");
       productCards?.forEach((card, index) => {
         gsap.fromTo(
           card,
           {
-            y: 100,
             opacity: 0,
-            rotateX: 45,
-            scale: 0.9,
+            y: 40,
           },
           {
-            y: 0,
             opacity: 1,
-            rotateX: 0,
-            scale: 1,
-            duration: 1,
-            delay: index * 0.15,
-            ease: "power3.out",
+            y: 0,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: "top 85%",
@@ -103,34 +97,6 @@ const FeaturedDrop = () => {
         );
       });
 
-      // Image parallax
-      const images = productsRef.current?.querySelectorAll(".product-img-wrap");
-      images?.forEach((imgWrap) => {
-        const img = imgWrap.querySelector("img");
-        if (img) {
-          gsap.to(img, {
-            y: -40,
-            scale: 1.1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: imgWrap,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          });
-        }
-      });
-
-      // Floating badges
-      gsap.to(".product-badge", {
-        y: -5,
-        duration: 2,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        stagger: 0.3,
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -148,10 +114,6 @@ const FeaturedDrop = () => {
         <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-red-500/20 rounded-full blur-[150px] animate-pulse delay-1000" />
       </div>
 
-      {/* Decorative Text */}
-      <div className="absolute top-20 left-12 text-white/5 text-[120px] font-black leading-none pointer-events-none hidden md:block rotate-12">
-        01
-      </div>
 
       {/* Section Header */}
       <div
@@ -161,13 +123,13 @@ const FeaturedDrop = () => {
       >
         <div className="featured-header">
           <div className="flex items-center gap-4 mb-4">
-            <div className="h-px w-16 bg-gradient-to-r from-yellow-500 to-transparent" />
-            <p className="text-xs font-bold tracking-[0.3em] text-yellow-500 uppercase">
-              01 — FEATURED
+            <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-xs font-bold tracking-[0.3em] text-red-500 uppercase">
+              FEATURED
             </p>
           </div>
           <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-tight mb-4">
-            THE <span className="text-yellow-500">DROP</span>
+            THE <span className="text-red-500">DROP</span>
           </h2>
           <p className="text-lg text-gray-400 max-w-xl">
             Limited releases. When they're gone, they're gone forever.
@@ -342,7 +304,7 @@ const FeaturedDrop = () => {
       >
         <Link
           to="/shop"
-          className="inline-flex items-center gap-4 px-12 py-6 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-yellow-500 hover:text-black transition-all transform hover:scale-105 active:scale-95"
+          className="inline-flex items-center gap-4 px-12 py-6 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-red-500 hover:text-black transition-all transform hover:scale-105 active:scale-95"
         >
           <ShoppingBag className="w-5 h-5" />
           <span>SHOP ALL PRODUCTS</span>

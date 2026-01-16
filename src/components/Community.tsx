@@ -116,7 +116,7 @@ const Community = () => {
     <section
       ref={sectionRef}
       id="community"
-      className="relative section-container bg-black py-32 md:py-40 overflow-hidden"
+      className="relative section-container bg-black py-32 md:py-40"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -135,7 +135,7 @@ const Community = () => {
           <div className="flex items-center gap-4 mb-4">
             <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
             <p className="text-xs font-bold tracking-[0.3em] text-red-500 uppercase">
-              04 — COMMUNITY
+              COMMUNITY
             </p>
           </div>
           <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-tight">
@@ -158,51 +158,7 @@ const Community = () => {
         </a>
       </div>
 
-      {/* Community Stats */}
-      <div
-        ref={statsRef}
-        className="relative z-10 grid grid-cols-3 gap-4 md:gap-8 mb-16 md:mb-24"
-      >
-        {communityStats.map((stat, index) => {
-          const Icon = stat.icon;
-          return (
-            <motion.div
-              key={index}
-              className="stat-counter group relative p-6 md:p-8 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all cursor-default"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {/* Icon */}
-              <div
-                className="mb-4 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 group-hover:scale-110 transition-transform"
-                style={{ backgroundColor: `${stat.color}20` }}
-              >
-                <Icon className="w-6 h-6" style={{ color: stat.color }} />
-              </div>
-
-              {/* Value */}
-              <p
-                className="stat-value text-3xl md:text-4xl font-black mb-2"
-                style={{ color: stat.color }}
-              >
-                {stat.value}
-              </p>
-
-              {/* Label */}
-              <p className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase">
-                {stat.label}
-              </p>
-
-              {/* Glow effect */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity blur-2xl -z-10"
-                style={{ backgroundColor: stat.color }}
-              />
-            </motion.div>
-          );
-        })}
-      </div>
-
+      
       {/* Community Grid */}
       <div ref={gridRef} className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {/* Large Featured Image */}
@@ -303,7 +259,7 @@ const Community = () => {
         <h3 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
           YOUR SOCKS.
           <br />
-          <span className="text-yellow-500">YOUR STORY.</span>
+          <span className="text-red-500">YOUR STORY.</span>
         </h3>
 
         <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">

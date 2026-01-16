@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FadeReveal, MaskReveal, TextReveal } from "@/components/animations";
 import CustomCursor from "@/components/CustomCursor";
+import { useCart } from "@/contexts/CartContext";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -27,6 +28,7 @@ const products = [
 
 const Product = () => {
   const { id } = useParams<{ id: string }>();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
@@ -119,6 +121,7 @@ const Product = () => {
       return;
     }
 
+    addToCart(product, selectedSize, quantity);
     setAddedToBag(true);
     setTimeout(() => setAddedToBag(false), 2000);
   };

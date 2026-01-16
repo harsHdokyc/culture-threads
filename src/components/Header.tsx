@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingBag, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
+import CartIcon from "./CartIcon";
+import Cart from "./Cart";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,7 +160,7 @@ const Header = () => {
           >
             <span className="relative z-10 inline-block group-hover:scale-110 transition-transform duration-300">
               <span className="text-white">SO</span>
-              <span className="text-red-500">KZ</span>
+              <span className="text-white">KZ</span>
             </span>
             {/* Logo glow effect */}
             <span className="absolute inset-0 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-r from-red-500 to-yellow-500" />
@@ -209,19 +211,8 @@ const Header = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
-            {/* Search Icon (Desktop) */}
-            <button className="hidden md:block p-2 text-gray-500 hover:text-white transition-colors hover:scale-110 active:scale-95">
-              <Search className="w-5 h-5" />
-            </button>
-
             {/* Cart Icon (Desktop) */}
-            <button className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all hover:scale-110 active:scale-95 relative group">
-              <ShoppingBag className="w-5 h-5" />
-              {/* Cart badge */}
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center group-hover:scale-125 transition-transform">
-                0
-              </span>
-            </button>
+            <CartIcon />
 
             {/* CTA Button (Desktop) */}
             <Link
@@ -292,7 +283,7 @@ const Header = () => {
               <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
                 <span className="font-black text-2xl tracking-tighter">
                   <span className="text-white">SO</span>
-                  <span className="text-red-500">KZ</span>
+                  <span className="text-white">KZ</span>
                 </span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
@@ -357,15 +348,9 @@ const Header = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className="flex items-center justify-center gap-3 w-full py-5 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all"
                   >
-                    <ShoppingBag className="w-5 h-5" />
                     <span>SHOP NOW</span>
                   </Link>
 
-                  {/* Search */}
-                  <button className="flex items-center justify-center gap-3 w-full py-5 border-2 border-white/20 text-white font-black text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all">
-                    <Search className="w-5 h-5" />
-                    <span>SEARCH</span>
-                  </button>
                 </motion.div>
 
                 {/* Social Links or Extra Info */}
@@ -402,6 +387,9 @@ const Header = () => {
           </>
         )}
       </AnimatePresence>
+
+      {/* Cart Component */}
+      <Cart />
     </>
   );
 };

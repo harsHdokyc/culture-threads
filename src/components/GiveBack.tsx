@@ -73,9 +73,12 @@ const GiveBack = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
         {/* Left Content */}
         <div className="giveback-left md:col-span-5">
-          <p className="body-sm text-muted-foreground mb-4">03 — GIVE BACK</p>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-xs font-bold tracking-[0.3em] text-red-500 uppercase">GIVE BACK</p>
+          </div>
           <h2 className="headline-lg mb-6">
-            <span className="text-accent-yellow">2%</span> OF EVERY
+            <span className="text-accent-red">2%</span> OF EVERY
             <br />
             ORDER GOES BACK
           </h2>
@@ -101,9 +104,7 @@ const GiveBack = () => {
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="divider mt-24 md:mt-32" />
-    </section>
+          </section>
   );
 };
 

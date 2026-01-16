@@ -117,14 +117,9 @@ const Shop = () => {
       {/* Hero */}
       <section
         ref={heroRef}
-        className="pt-40 pb-20 section-container relative overflow-hidden"
+        className="pt-40 pb-20 section-container relative"
         style={{ perspective: "1000px" }}
       >
-        {/* Background gradient */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-red-500 rounded-full blur-[120px] animate-pulse" />
-        </div>
-
         <div className="relative z-10">
           <p className="shop-subtitle text-xs font-bold tracking-[0.3em] text-red-500 mb-6">
             THE COLLECTION
@@ -132,7 +127,7 @@ const Shop = () => {
           <h1 className="shop-title text-7xl md:text-9xl font-black leading-none tracking-tighter mb-6">
             ALL
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient inline-block pr-4">
               SOCKS
             </span>
           </h1>
@@ -145,7 +140,7 @@ const Shop = () => {
       </section>
 
       {/* Filters & Controls */}
-      <section className="section-container pt-0 pb-12 sticky top-20 z-40 bg-black/80 backdrop-blur-xl border-y border-white/10">
+      <section className="section-container pt-0 pb-12 sticky top-20 z-40 bg-black/80 backdrop-blur-xl border-t border-white/10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Category Filters */}
           <div className="flex flex-wrap gap-3">
@@ -219,7 +214,7 @@ const Shop = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             ref={gridRef}
-            className={`grid gap-6 ${
+            className={`grid gap-12 ${
               gridSize === 3
                 ? "grid-cols-2 md:grid-cols-3"
                 : "grid-cols-2 md:grid-cols-4"
@@ -327,7 +322,7 @@ const Shop = () => {
           50% { background-position: 100% 50%; }
         }
         .animate-gradient {
-          background-size: 200% 200%;
+          background-size: 200% 100%;
           animation: gradient 3s ease infinite;
         }
       `}</style>
