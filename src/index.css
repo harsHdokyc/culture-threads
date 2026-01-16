@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  SOKZ Design System
+  Editorial • Brutalist • Culture-First
+  No gradients. No glassmorphism. Print-inspired.
+*/
+
+@layer base {
+  :root {
+    /* Core Palette - Print Inspired */
+    --background: 0 0% 4%;           /* Deep black #0A0A0A */
+    --foreground: 40 23% 94%;        /* Warm off-white #F5F2EB */
+    
+    --card: 0 0% 6%;
+    --card-foreground: 40 23% 94%;
+    
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 23% 94%;
+    
+    /* Brand Colors */
+    --primary: 40 23% 94%;           /* Off-white as primary on dark */
+    --primary-foreground: 0 0% 4%;
+    
+    --secondary: 0 0% 12%;           /* Charcoal */
+    --secondary-foreground: 40 23% 94%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 40 10% 60%;
+    
+    /* Accent Colors - Used Sparingly */
+    --accent: 355 82% 56%;           /* Red #E63946 */
+    --accent-foreground: 40 23% 94%;
+    
+    --accent-yellow: 49 100% 52%;    /* Yellow #FFD60A */
+    --accent-yellow-foreground: 0 0% 4%;
+    
+    --destructive: 355 82% 56%;
+    --destructive-foreground: 40 23% 94%;
+    
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 40 23% 94%;
+    
+    --radius: 0px;                   /* No rounded corners - brutalist */
+    
+    /* Typography Scale */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --section-padding: clamp(4rem, 10vw, 8rem);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 40 23% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure no initial scroll */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    scroll-padding-top: 0;
+  }
+  
+  /* Typography Defaults */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+  
+  /* Selection */
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+}
+
+@layer components {
+  /* Editorial Typography Classes */
+  .headline-xl {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  
+  .headline-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+  
+  .headline-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  
+  .body-lg {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+  
+  .body-sm {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  
+  /* Editorial Button */
+  .btn-editorial {
+    @apply inline-flex items-center justify-center;
+    @apply px-8 py-4;
+    @apply bg-foreground text-background;
+    @apply font-display font-semibold uppercase tracking-wider;
+    @apply text-sm;
+    @apply border-2 border-foreground;
+    @apply transition-all duration-200;
+  }
+  
+  .btn-editorial:hover {
+    @apply bg-transparent text-foreground;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center;
+    @apply px-8 py-4;
+    @apply bg-transparent text-foreground;
+    @apply font-display font-semibold uppercase tracking-wider;
+    @apply text-sm;
+    @apply border-2 border-foreground;
+    @apply transition-all duration-200;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-foreground text-background;
+  }
+  
+  /* Accent variants */
+  .btn-accent {
+    @apply inline-flex items-center justify-center;
+    @apply px-8 py-4;
+    @apply bg-accent text-accent-foreground;
+    @apply font-display font-semibold uppercase tracking-wider;
+    @apply text-sm;
+    @apply border-2 border-accent;
+    @apply transition-all duration-200;
+  }
+  
+  .btn-accent:hover {
+    @apply bg-transparent text-accent;
+  }
+  
+  /* Editorial Grid */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Section Container */
+  .section-container {
+    @apply px-6 md:px-12 lg:px-20;
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+  
+  /* Divider Line */
+  .divider {
+    @apply w-full h-px bg-border;
+  }
+  
+  /* Product Card Editorial */
+  .product-card {
+    @apply relative overflow-hidden;
+    @apply transition-all duration-300;
+  }
+  
+  .product-card:hover .product-image {
+    transform: scale(1.02);
+  }
+  
+  .product-image {
+    @apply transition-transform duration-500 ease-out;
+  }
+  
+  /* Link Underline Animation */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-full h-px bg-current;
+    @apply origin-left scale-x-0 transition-transform duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+@layer utilities {
+  /* Text Colors */
+  .text-off-white {
+    color: hsl(var(--foreground));
+  }
+  
+  .text-accent-red {
+    color: hsl(var(--accent));
+  }
+  
+  .text-accent-yellow {
+    color: hsl(var(--accent-yellow));
+  }
+  
+  /* Background Colors */
+  .bg-deep-black {
+    background-color: hsl(var(--background));
+  }
+  
+  .bg-charcoal {
+    background-color: hsl(var(--secondary));
+  }
+  
+  .bg-accent-red {
+    background-color: hsl(var(--accent));
+  }
+  
+  .bg-accent-yellow {
+    background-color: hsl(var(--accent-yellow));
+  }
+  
+  /* Border Colors */
+  .border-accent-red {
+    border-color: hsl(var(--accent));
+  }
+  
+  .border-accent-yellow {
+    border-color: hsl(var(--accent-yellow));
+  }
+}
