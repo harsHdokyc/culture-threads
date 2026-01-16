@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 import { FadeReveal } from "@/components/animations";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
@@ -49,20 +50,10 @@ const Drops = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
   const dropCardsRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
-      
-      if (cursorRef.current) {
-        gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -114,14 +105,6 @@ const Drops = () => {
           duration: 0.4,
           ease: "power2.out",
         });
-        
-        if (cursorRef.current) {
-          gsap.to(cursorRef.current, {
-            scale: 3,
-            backgroundColor: "rgba(255, 59, 48, 0.2)",
-            duration: 0.3,
-          });
-        }
       };
 
       const handleMouseLeave = () => {
@@ -131,14 +114,6 @@ const Drops = () => {
           duration: 0.4,
           ease: "power2.out",
         });
-        
-        if (cursorRef.current) {
-          gsap.to(cursorRef.current, {
-            scale: 1,
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            duration: 0.3,
-          });
-        }
       };
 
       card.addEventListener("mouseenter", handleMouseEnter);
@@ -164,15 +139,7 @@ const Drops = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className="fixed w-6 h-6 rounded-full border-2 border-white pointer-events-none z-[9999] mix-blend-difference hidden md:block"
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <CustomCursor hoverScale={3} hoverBackgroundColor="rgba(255, 59, 48, 0.2)" />
 
       <Header />
 
