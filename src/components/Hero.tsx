@@ -1,19 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-socks.jpg";
+import heroVideo from "@/assets/herobg.mp4";
+import { Volume2, VolumeX } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [canPlayVideo, setCanPlayVideo] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Parallax on background
-      gsap.to(".hero-bg-image", {
+      gsap.to(".hero-bg-video", {
         y: 150,
         scale: 1.1,
         ease: "none",
@@ -51,14 +58,125 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
+  // Set video volume to 30%
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = 0.3;
+    }
+  }, []);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const newMutedState = !videoRef.current.muted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+      setUserInteracted(true);
+    }
+  };
+
+  // Optimize video loading
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleCanPlay = async () => {
+      setCanPlayVideo(true);
+      setIsVideoLoaded(true);
+      
+      // Try to play video
+      if (video) {
+        try {
+          // Try unmuted first
+          video.muted = false;
+          await video.play();
+          setIsMuted(false);
+        } catch (error) {
+          try {
+            // Fallback to muted
+            video.muted = true;
+            await video.play();
+            setIsMuted(true);
+          } catch (mutedError) {
+            // Video failed to play even muted
+          }
+        }
+      }
+    };
+
+    const handleLoadStart = () => {
+      setIsVideoLoaded(false);
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadstart', handleLoadStart);
+
+    // Set video optimization attributes
+    video.preload = 'metadata';
+    video.setAttribute('playsinline', '');
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadstart', handleLoadStart);
+    };
+  }, []);
+
+  // Lazy load video when component is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && videoRef.current && !canPlayVideo) {
+            videoRef.current.load();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [canPlayVideo]);
+
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-end pb-16 md:pb-24 pt-32 overflow-hidden">
-      {/* Background Image */}
+      {/* Mute Button */}
+      <button
+        onClick={toggleMute}
+        className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-black/70 rounded-full transition-colors duration-200"
+        aria-label={isMuted ? "Unmute video" : "Mute video"}
+      >
+        {isMuted ? (
+          <VolumeX className="w-4 h-4 text-white" />
+        ) : (
+          <Volume2 className="w-4 h-4 text-white" />
+        )}
+      </button>
+
+      {/* Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Street style socks"
-          className="hero-bg-image w-full h-full object-cover object-center scale-100"
+        {/* Fallback image while video loads */}
+        {!isVideoLoaded && (
+          <img
+            src={heroImage}
+            alt="Street style socks"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-100"
+          />
+        )}
+        
+        <video
+          ref={videoRef}
+          src={heroVideo}
+          loop
+          muted={false}
+          playsInline
+          preload="metadata"
+          className={`hero-bg-video w-full h-full object-cover object-center scale-100 transition-opacity duration-1000 ${
+            isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
         <div className="absolute inset-0 bg-background/70" />
       </div>

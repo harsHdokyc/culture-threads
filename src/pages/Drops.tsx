@@ -167,7 +167,6 @@ const Drops = () => {
           <div className="max-w-4xl">
             <FadeReveal direction="up" delay={0.1}>
               <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-12 bg-red-500" />
                 <p className="text-xs font-bold tracking-[0.3em] text-red-500">
                   LIMITED RELEASES
                 </p>
@@ -178,7 +177,7 @@ const Drops = () => {
               <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter">
                 THE
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient inline-block pr-4">
                   DROPS
                 </span>
               </h1>
@@ -199,11 +198,11 @@ const Drops = () => {
               <div className="flex flex-wrap gap-4 mt-10">
                 <div className="px-6 py-3 border border-white/20 backdrop-blur-sm">
                   <p className="text-xs text-gray-400 mb-1">CURRENT DROP</p>
-                  <p className="text-lg font-bold">003 — AVAILABLE</p>
+                  <p className="text-lg font-bold">AVAILABLE</p>
                 </div>
                 <div className="px-6 py-3 border border-white/20 backdrop-blur-sm">
                   <p className="text-xs text-gray-400 mb-1">NEXT DROP</p>
-                  <p className="text-lg font-bold">004 — FEB 2026</p>
+                  <p className="text-lg font-bold">FEB 2026</p>
                 </div>
               </div>
             </FadeReveal>
