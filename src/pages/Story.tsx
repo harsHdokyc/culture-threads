@@ -187,28 +187,28 @@ const Story = () => {
       <Header />
 
       {/* Hero with cinematic reveal */}
-      <section className="pt-40 pb-32 section-container relative overflow-hidden">
+      <section className="pt-32 sm:pt-36 md:pt-40 pb-20 sm:pb-24 md:pb-32 section-container relative overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-red-500/40 rounded-full blur-[150px] animate-pulse" />
-          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-yellow-500/30 rounded-full blur-[150px] animate-pulse delay-1000" />
+          <div className="absolute top-1/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-red-500/40 rounded-full blur-[100px] sm:blur-[150px] animate-pulse" />
+          <div className="absolute bottom-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-yellow-500/30 rounded-full blur-[100px] sm:blur-[150px] animate-pulse delay-1000" />
         </div>
 
         <div ref={heroTextRef} className="relative z-10 max-w-5xl" style={{ perspective: "2000px" }}>
-          <p className="story-hero-line text-xs font-bold tracking-[0.3em] text-red-500 mb-8">
+          <p className="story-hero-line text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 mb-6 sm:mb-8">
             OUR STORY
           </p>
 
           <h1 className="mb-12 overflow-hidden">
-            <div className="story-hero-line text-6xl md:text-8xl font-black leading-none tracking-tighter mb-4">
+            <div className="story-hero-line text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tighter mb-2 sm:mb-4">
               WE STARTED WITH A
             </div>
-            <div className="story-hero-line text-6xl md:text-9xl font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">
+            <div className="story-hero-line text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">
               SIMPLE QUESTION
             </div>
           </h1>
 
-          <p className="story-hero-line text-3xl md:text-5xl font-light text-gray-400 max-w-3xl leading-tight">
+          <p className="story-hero-line text-xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-light text-gray-400 max-w-2xl sm:max-w-3xl leading-tight">
             Why are socks so{" "}
             <span className="font-black italic text-white line-through">boring</span>
             ?
@@ -216,18 +216,18 @@ const Story = () => {
         </div>
 
         {/* Floating decorations */}
-        <div className="float-decoration absolute top-20 right-20 text-white/5 text-9xl font-black pointer-events-none hidden md:block">
+        <div className="float-decoration absolute top-16 sm:top-20 right-16 sm:right-20 text-white/5 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black pointer-events-none hidden md:block">
           ?
         </div>
       </section>
 
       {/* Origin Story - Split Layout */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNGgydjJoLTJ2LTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')]" />
 
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 md:gap-20 items-center">
             {/* Image */}
             <div className="lg:col-span-6 relative overflow-hidden">
               <div className="aspect-[4/5] relative">
@@ -237,30 +237,30 @@ const Story = () => {
                   className="story-parallax-img w-full h-full object-cover"
                 />
                 {/* Image border effect */}
-                <div className="absolute inset-0 border-4 border-white/10" />
-                <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-red-500/30 -z-10" />
+                <div className="absolute inset-0 border-2 sm:border-4 border-white/10" />
+                <div className="absolute -bottom-3 sm:-bottom-4 -right-3 sm:-right-4 w-full h-full border-2 sm:border-4 border-red-500/30 -z-10" />
               </div>
             </div>
 
             {/* Content */}
-            <div className="lg:col-span-6 space-y-8">
+            <div className="lg:col-span-6 space-y-6 sm:space-y-8">
               <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-px w-16 bg-yellow-500" />
-                  <p className="text-xs font-bold tracking-[0.3em] text-yellow-500">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+                  <div className="h-px w-12 sm:w-14 md:w-16 bg-yellow-500" />
+                  <p className="text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-yellow-500">
                     2025, MUMBAI
                   </p>
                 </div>
 
-                <h2 className="text-5xl md:text-6xl font-black mb-8 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8 leading-tight">
                   IT STARTED IN A
                   <br />
                   <span className="text-yellow-500">HOSTEL ROOM</span>
                 </h2>
               </div>
 
-              <div className="space-y-6 text-lg text-gray-400 leading-relaxed">
-                <p className="text-xl text-white font-semibold">
+              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-400 leading-relaxed">
+                <p className="text-lg sm:text-xl md:text-2xl text-white font-semibold">
                   Two friends. Zero budget. One obsession.
                 </p>
                 <p>
@@ -277,18 +277,18 @@ const Story = () => {
                 </p>
               </div>
 
-              <div className="pt-8 flex gap-12">
+              <div className="pt-6 sm:pt-8 flex gap-6 sm:gap-8 md:gap-12">
                 <div>
-                  <p className="text-4xl font-black text-red-500 mb-2">2024</p>
-                  <p className="text-sm text-gray-500">FOUNDED</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black text-red-500 mb-1 sm:mb-2">2024</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">FOUNDED</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-black text-yellow-500 mb-2">50K+</p>
-                  <p className="text-sm text-gray-500">CREW MEMBERS</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black text-yellow-500 mb-1 sm:mb-2">50K+</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">CREW MEMBERS</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-black text-cyan-500 mb-2">100K+</p>
-                  <p className="text-sm text-gray-500">PAIRS SOLD</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-500 mb-1 sm:mb-2">100K+</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">PAIRS SOLD</p>
                 </div>
               </div>
             </div>

@@ -142,17 +142,17 @@ const Hero = () => {
   }, [canPlayVideo]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-end pb-16 md:pb-24 pt-32 overflow-hidden">
+    <section ref={heroRef} className="relative min-h-screen flex items-end pb-4 sm:pb-6 md:pb-8 lg:pb-12 pt-12 sm:pt-16 md:pt-20 lg:pt-24 overflow-hidden">
       {/* Mute Button */}
       <button
         onClick={toggleMute}
-        className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-black/70 rounded-full transition-colors duration-200"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-20 p-2 sm:p-2.5 md:p-3 bg-black/70 hover:bg-black/90 backdrop-blur-sm border border-white/20 rounded-full transition-all duration-200 hover:scale-110 active:scale-95"
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         {isMuted ? (
-          <VolumeX className="w-4 h-4 text-white" />
+          <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
         ) : (
-          <Volume2 className="w-4 h-4 text-white" />
+          <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
         )}
       </button>
 
@@ -183,15 +183,15 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 section-container w-full">
-        <div ref={textRef} className="max-w-5xl">
+        <div ref={textRef} className="max-w-3xl sm:max-w-4xl md:max-w-5xl">
           <div className="overflow-hidden">
-            <p className="hero-line body-sm text-muted-foreground mb-4 md:mb-6">
+            <p className="hero-line body-sm text-muted-foreground mb-2 sm:mb-3 text-xs sm:text-sm">
               CULTURE ON YOUR FEET
             </p>
           </div>
 
           <div className="overflow-hidden">
-            <h1 className="hero-line headline-xl mb-6 md:mb-8">
+            <h1 className="hero-line headline-xl mb-2 sm:mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
               NOT YOUR
               <br />
               <span className="text-accent-red">BASIC</span> SOCKS
@@ -199,7 +199,7 @@ const Hero = () => {
           </div>
 
           <div className="overflow-hidden">
-            <p className="hero-line body-lg text-muted-foreground max-w-md mb-10">
+            <p className="hero-line body-lg text-muted-foreground max-w-xs sm:max-w-sm md:max-w-md mb-4 sm:mb-6 text-sm sm:text-base">
               Made for the ones who don't blend in. Street-ready. Culture-first. 100% Indian.
             </p>
           </div>
@@ -210,7 +210,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <a href="#shop" className="btn-editorial">
+              <a href="#shop" className="btn-editorial text-xs sm:text-sm">
                 EXPLORE THE DROP
               </a>
             </motion.div>

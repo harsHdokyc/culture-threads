@@ -100,30 +100,30 @@ const NotFound = () => {
 
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/40 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/30 rounded-full blur-[120px] animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-red-500/40 rounded-full blur-[100px] sm:blur-[150px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-yellow-500/30 rounded-full blur-[100px] sm:blur-[150px] animate-pulse delay-1000" />
       </div>
 
       {/* Floating Decorations */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="float-404 absolute top-20 left-20 text-white/5 text-9xl font-black rotate-12">
+        <div className="float-404 absolute top-20 left-20 text-white/5 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black rotate-12">
           ?
         </div>
-        <div className="float-404 absolute bottom-40 right-20 text-white/5 text-9xl font-black -rotate-12">
+        <div className="float-404 absolute bottom-40 right-20 text-white/5 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black -rotate-12">
           !
         </div>
-        <div className="float-404 absolute top-1/2 left-40 text-white/5 text-6xl font-black rotate-45">
+        <div className="float-404 absolute top-1/2 left-40 text-white/5 text-4xl sm:text-5xl md:text-6xl font-black rotate-45">
           404
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         {/* 404 Glitch Text */}
         <div className="animate-in mb-8">
           <h1
             ref={glitchRef}
-            className="text-[200px] md:text-[300px] font-black leading-none tracking-tighter mb-0"
+            className="text-[120px] sm:text-[150px] md:text-[200px] lg:text-[300px] font-black leading-none tracking-tighter mb-0"
             style={{
               textShadow: `
                 3px 3px 0 #ff3b30,
@@ -138,8 +138,8 @@ const NotFound = () => {
 
         {/* Error Message */}
         <div className="animate-in mb-6">
-          <div className="inline-block px-6 py-3 bg-red-500 border-4 border-white shadow-[8px_8px_0px_0px_rgba(255,255,255,0.2)]">
-            <p className="text-lg md:text-xl font-black tracking-wider uppercase">
+          <div className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-red-500 border-2 sm:border-4 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] sm:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.2)]">
+            <p className="text-base sm:text-lg md:text-xl font-black tracking-wider uppercase">
               PAGE NOT FOUND
             </p>
           </div>
@@ -147,40 +147,40 @@ const NotFound = () => {
 
         {/* Description */}
         <div className="animate-in mb-12">
-          <p className="text-xl md:text-2xl text-gray-400 mb-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-4">
             Looks like you wandered off the path...
           </p>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-500 max-w-xl sm:max-w-2xl mx-auto">
             This page doesn't exist, got deleted, or you typed the URL wrong. Either way,
             let's get you back on track.
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="animate-in flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <div className="animate-in flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16">
           <Link
             to="/"
-            className="group px-8 py-5 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105 active:scale-95"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 transform hover:scale-105 active:scale-95"
           >
-            <Home className="w-5 h-5" />
-            <span>TAKE ME HOME</span>
+            <Home className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-xs sm:text-sm">TAKE ME HOME</span>
           </Link>
 
           <button
             onClick={() => window.history.back()}
-            className="group px-8 py-5 border-2 border-white text-white font-black text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105 active:scale-95"
+            className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 transform hover:scale-105 active:scale-95"
           >
-            <ArrowLeft className="w-5 h-5" />
-            <span>GO BACK</span>
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-xs sm:text-sm">GO BACK</span>
           </button>
         </div>
 
         {/* Quick Links */}
         <div className="animate-in">
-          <p className="text-xs font-bold tracking-[0.3em] text-gray-600 uppercase mb-6">
+          <p className="text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-gray-600 uppercase mb-4 sm:mb-6">
             OR TRY THESE
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
             {randomLinks.map((link, index) => (
               <motion.div
                 key={link.path}
@@ -190,7 +190,7 @@ const NotFound = () => {
               >
                 <Link
                   to={link.path}
-                  className="px-6 py-3 bg-white/5 border border-white/20 text-sm font-bold tracking-wider uppercase hover:bg-white/10 hover:border-white transition-all"
+                  className="px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/20 text-sm font-bold tracking-wider uppercase hover:bg-white/10 hover:border-white transition-all"
                 >
                   {link.label}
                 </Link>
@@ -210,7 +210,7 @@ const NotFound = () => {
 
       {/* Rotating Icon Decoration */}
       <div className="rotate-icon absolute bottom-8 right-8 opacity-20 pointer-events-none hidden md:block">
-        <Search className="w-24 h-24 text-white" />
+        <Search className="w-16 h-16 sm:w-20 sm:w-24 sm:h-24 text-white" />
       </div>
 
       <style>{`

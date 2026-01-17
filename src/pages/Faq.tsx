@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, HelpCircle, Package, CreditCard, Truck, RotateCcw, Shield, Gift } from "lucide-react";
+import { ChevronDown, Package, CreditCard, Truck, RotateCcw, Shield, Gift } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
@@ -161,61 +161,55 @@ const Faq = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       <CustomCursor />
-      
-      {/* Scattered Background Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 text-9xl font-black text-red-500/5 rotate-12">?</div>
-        <div className="absolute top-20 right-20 text-8xl font-black text-yellow-500/5 -rotate-6">!</div>
-        <div className="absolute bottom-20 left-20 text-7xl font-black text-cyan-500/5 rotate-45">?</div>
-        <div className="absolute bottom-40 right-40 text-6xl font-black text-green-500/5 -rotate-12">!</div>
-        <div className="absolute top-1/2 left-1/3 text-8xl font-black text-purple-500/5 rotate-6">?</div>
-        <div className="absolute top-1/3 right-1/3 text-7xl font-black text-pink-500/5 -rotate-45">!</div>
-        
-        {/* Floating shapes */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-yellow-500/10 rounded-full blur-xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-36 h-36 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-2000" />
-      </div>
-
       <Header />
 
-      <div className="section-container py-32">
+      <div className="section-container py-16 sm:py-20 md:py-24 lg:py-32">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-8 h-8 text-red-500" />
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-              FREQUENTLY ASKED
-              <span className="text-red-500"> QUESTIONS</span>
-            </h1>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+            <div className="h-[2px] w-12 sm:w-14 md:w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 uppercase">
+              FAQ
+            </p>
           </div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Everything you need to know about SOKZ. Can't find what you're looking for? 
-            <a href="/contact" className="text-white underline ml-2">Hit us up</a>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-tight mb-4 sm:mb-6">
+            FREQUENTLY ASKED
+            <span className="text-red-500"> QUESTIONS</span>
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl">
+            Everything you need to know about SOKZ. Can't find what you're looking for?{" "}
+            <a href="/contact" className="text-white hover:text-red-500 transition-colors underline">Hit us up</a>
           </p>
         </motion.div>
 
         {/* Category Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-12 sm:mb-16 md:mb-20">
           {faqCategories.map((category, index) => {
             const Icon = category.icon;
+            const colorClasses = {
+              red: "bg-red-500 text-white border-red-500",
+              yellow: "bg-yellow-500 text-black border-yellow-500",
+              cyan: "bg-cyan-500 text-white border-cyan-500",
+              green: "bg-green-500 text-white border-green-500",
+              purple: "bg-purple-500 text-white border-purple-500",
+              pink: "bg-pink-500 text-white border-pink-500",
+            };
             return (
               <motion.button
                 key={index}
                 onClick={() => setActiveCategory(index)}
-                className={`group px-6 py-3 border-2 font-black text-sm tracking-wider uppercase transition-all ${
+                className={`px-4 sm:px-5 py-2 sm:py-3 border-2 font-black text-xs sm:text-sm tracking-wider uppercase transition-all ${
                   activeCategory === index
-                    ? `bg-${category.color}-500 text-white border-${category.color}-500`
-                    : "border-white/20 hover:border-white hover:bg-white/10"
+                    ? colorClasses[category.color as keyof typeof colorClasses]
+                    : "border-white/20 text-white hover:border-white/40 hover:bg-white/5"
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Icon className="w-4 h-4 mr-2" />
                 {category.title}
               </motion.button>
             );
@@ -223,45 +217,49 @@ const Faq = () => {
         </div>
 
         {/* Questions */}
-        <div className="max-w-4xl mx-auto space-y-6">
-          {faqCategories[activeCategory].questions.map((faq, qIndex) => (
-            <motion.div
-              key={qIndex}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: qIndex * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-lg overflow-hidden"
-            >
-              <button
-                onClick={() => toggleQuestion(activeCategory, qIndex)}
-                className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+        <div className="space-y-3 sm:space-y-4">
+          {faqCategories[activeCategory].questions.map((faq, qIndex) => {
+            const isOpen = openQuestions[`${activeCategory}-${qIndex}`];
+            return (
+              <motion.div
+                key={qIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: qIndex * 0.05 }}
+                className="border border-white/10 overflow-hidden"
               >
-                <span className="font-black text-lg pr-4">{faq.q}</span>
-                <motion.div
-                  animate={{ rotate: openQuestions[`${activeCategory}-${qIndex}`] ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                <button
+                  onClick={() => toggleQuestion(activeCategory, qIndex)}
+                  className="w-full flex items-center justify-between gap-4 p-4 sm:p-5 md:p-6 text-left hover:bg-white/5 transition-colors"
                 >
-                  <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                </motion.div>
-              </button>
-              
-              <AnimatePresence>
-                {openQuestions[`${activeCategory}-${qIndex}`] && (
+                  <span className="font-black text-sm sm:text-base md:text-lg flex-1">{faq.q}</span>
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                    className="flex-shrink-0"
                   >
-                    <div className="px-8 pb-6 text-gray-300 leading-relaxed">
-                      {faq.a}
-                    </div>
+                    <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                </button>
+                
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 text-sm sm:text-base text-gray-300 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Still Need Help */}
@@ -269,20 +267,20 @@ const Faq = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="text-center mt-20 p-8 bg-gradient-to-r from-red-500/10 to-yellow-500/10 border border-white/10 rounded-lg"
+          className="text-center mt-16 sm:mt-20 md:mt-24 border border-white/10 p-8 sm:p-10 md:p-12 bg-white/5"
         >
-          <h3 className="text-2xl font-black mb-4">STILL NEED HELP?</h3>
-          <p className="text-gray-400 mb-6">Our crew is here to help you 24/7</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">STILL NEED HELP?</h3>
+          <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">Our crew is here to help you 24/7</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <a
               href="mailto:hello@sokz.in"
-              className="px-6 py-3 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all"
+              className="flex-1 py-3 sm:py-4 bg-white text-black font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-2 sm:gap-3"
             >
               EMAIL US
             </a>
             <a
               href="tel:+911234567890"
-              className="px-6 py-3 border-2 border-white text-white font-black text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all"
+              className="flex-1 py-3 sm:py-4 border-2 border-white text-white font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 sm:gap-3"
             >
               CALL US
             </a>

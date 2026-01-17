@@ -117,22 +117,22 @@ const Shop = () => {
       {/* Hero */}
       <section
         ref={heroRef}
-        className="pt-40 pb-20 section-container relative"
+        className="pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-20 section-container relative"
         style={{ perspective: "1000px" }}
       >
         <div className="relative z-10">
-          <p className="shop-subtitle text-xs font-bold tracking-[0.3em] text-red-500 mb-6">
+          <p className="shop-subtitle text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 mb-4 sm:mb-6">
             THE COLLECTION
           </p>
-          <h1 className="shop-title text-7xl md:text-9xl font-black leading-none tracking-tighter mb-6">
+          <h1 className="shop-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tighter mb-4 sm:mb-6">
             ALL
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient inline-block pr-4">
               SOCKS
             </span>
           </h1>
-          <div className="shop-count inline-block px-6 py-3 bg-white/5 border border-white/10 backdrop-blur-sm">
-            <span className="text-sm font-bold">
+          <div className="shop-count inline-block px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/10 backdrop-blur-sm">
+            <span className="text-xs sm:text-sm font-bold">
               {sortedProducts.length} PRODUCTS AVAILABLE
             </span>
           </div>
@@ -140,22 +140,22 @@ const Shop = () => {
       </section>
 
       {/* Filters & Controls */}
-      <section className="section-container pt-0 pb-12 sticky top-20 z-40 bg-black/80 backdrop-blur-xl border-t border-white/10">
+      <section className="section-container pt-0 pb-8 sm:pb-12 sticky top-20 z-40 bg-black/80 backdrop-blur-xl border-t border-white/10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Category Filters */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`group relative px-6 py-3 font-black text-xs tracking-wider uppercase border-2 transition-all ${
+                className={`group relative px-3 sm:px-4 py-2 sm:py-3 font-black text-xs tracking-wider uppercase border-2 transition-all ${
                   activeCategory === cat.id
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-white border-white/20 hover:border-white"
                 }`}
               >
                 <span className="relative z-10">{cat.label}</span>
-                <span className="ml-2 text-[10px] opacity-50">({cat.count})</span>
+                <span className="ml-1 sm:ml-2 text-[8px] sm:text-[10px] opacity-50">({cat.count})</span>
                 {activeCategory === cat.id && (
                   <motion.div
                     layoutId="activeCategory"
@@ -173,7 +173,7 @@ const Shop = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 bg-white/5 border border-white/20 text-white text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white cursor-pointer hover:bg-white/10 transition-all"
+              className="px-2 sm:px-3 py-2 sm:py-3 bg-white/5 border border-white/20 text-white text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-white cursor-pointer hover:bg-white/10 transition-all"
             >
               <option value="featured" className="bg-black">FEATURED</option>
               <option value="price-low" className="bg-black">PRICE: LOW TO HIGH</option>
@@ -182,14 +182,14 @@ const Shop = () => {
             </select>
 
             {/* Grid Size Toggle */}
-            <div className="flex gap-2 border border-white/20 p-1">
+            <div className="flex gap-1 sm:gap-2 border border-white/20 p-1">
               <button
                 onClick={() => setGridSize(3)}
                 className={`p-2 transition-all ${
                   gridSize === 3 ? "bg-white text-black" : "text-white/50 hover:text-white"
                 }`}
               >
-                <Grid3x3 className="w-4 h-4" />
+                <Grid3x3 className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
               <button
                 onClick={() => setGridSize(4)}
@@ -197,7 +197,7 @@ const Shop = () => {
                   gridSize === 4 ? "bg-white text-black" : "text-white/50 hover:text-white"
                 }`}
               >
-                <LayoutGrid className="w-4 h-4" />
+                <LayoutGrid className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             </div>
           </div>
@@ -205,7 +205,7 @@ const Shop = () => {
       </section>
 
       {/* Product Grid */}
-      <section className="section-container pb-32">
+      <section className="section-container pb-20 sm:pb-24 md:pb-32">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeCategory}-${gridSize}`}
@@ -214,10 +214,10 @@ const Shop = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             ref={gridRef}
-            className={`grid gap-12 ${
+            className={`grid gap-6 sm:gap-8 md:gap-12 ${
               gridSize === 3
-                ? "grid-cols-2 md:grid-cols-3"
-                : "grid-cols-2 md:grid-cols-4"
+                ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+                : "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
             }`}
           >
             {sortedProducts.map((product, index) => (
@@ -226,7 +226,7 @@ const Shop = () => {
                 to={`/product/${product.id}`}
                 className="product-card-animate group block"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900 mb-4">
+                <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900 mb-3 sm:mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -236,7 +236,7 @@ const Shop = () => {
                   {/* Tag */}
                   {product.tag && (
                     <span
-                      className={`absolute top-4 left-4 px-4 py-2 text-xs font-black uppercase tracking-wider z-20 ${
+                      className={`absolute top-2 sm:top-4 left-2 sm:left-4 px-2 sm:px-3 py-1 sm:py-2 text-xs font-black uppercase tracking-wider z-20 ${
                         product.tag === "NEW"
                           ? "bg-yellow-500 text-black"
                           : product.tag === "BESTSELLER"
@@ -249,31 +249,31 @@ const Shop = () => {
                   )}
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 sm:p-4 md:p-6">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="text-sm font-bold mb-2 block">QUICK VIEW</span>
+                      <span className="text-xs sm:text-sm font-bold mb-1 sm:mb-2 block">QUICK VIEW</span>
                       <div className="flex gap-2">
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold">S</span>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold">M</span>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold">L</span>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold">XL</span>
+                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-sm text-[10px] sm:text-xs font-bold">S</span>
+                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-sm text-[10px] sm:text-xs font-bold">M</span>
+                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-sm text-[10px] sm:text-xs font-bold">L</span>
+                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-sm text-[10px] sm:text-xs font-bold">XL</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Corner accent */}
-                  <div className="absolute top-0 right-0 w-0 h-0 group-hover:w-12 group-hover:h-12 transition-all duration-300 border-t-2 border-r-2 border-white/30" />
+                  <div className="absolute top-0 right-0 w-0 h-0 group-hover:w-8 sm:group-hover:w-10 md:group-hover:w-12 group-hover:h-8 sm:group-hover:h-10 md:group-hover:h-12 transition-all duration-300 border-t-2 border-r-2 border-white/30" />
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm md:text-base font-black tracking-tight group-hover:text-red-500 transition-colors">
+                  <h3 className="text-xs sm:text-sm md:text-base font-black tracking-tight group-hover:text-red-500 transition-colors">
                     {product.name}
                   </h3>
                   <div className="flex items-center justify-between">
-                    <span className="text-base md:text-lg font-black text-gray-400">
+                    <span className="text-sm sm:text-base md:text-lg font-black text-gray-400">
                       ₹{product.price}
                     </span>
-                    <span className="text-xs text-gray-600 group-hover:text-white transition-colors">
+                    <span className="text-[10px] sm:text-xs text-gray-600 group-hover:text-white transition-colors">
                       VIEW →
                     </span>
                   </div>
@@ -286,11 +286,11 @@ const Shop = () => {
         {/* No Results */}
         {sortedProducts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-4xl font-black mb-4">NO SOCKS FOUND</p>
-            <p className="text-gray-500 mb-8">Try a different filter</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-black mb-2 sm:mb-4">NO SOCKS FOUND</p>
+            <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-8">Try a different filter</p>
             <button
               onClick={() => setActiveCategory("all")}
-              className="px-8 py-4 bg-white text-black font-black text-sm tracking-wider hover:bg-red-500 hover:text-white transition-all"
+              className="px-6 sm:px-8 py-2 sm:py-4 bg-white text-black font-black text-xs sm:text-sm tracking-wider hover:bg-red-500 hover:text-white transition-all"
             >
               VIEW ALL PRODUCTS
             </button>

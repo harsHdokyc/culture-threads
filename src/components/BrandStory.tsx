@@ -83,39 +83,39 @@ const BrandStory = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative section-container bg-black py-32 md:py-40 overflow-hidden"
+      className="relative section-container bg-black py-16 sm:py-20 md:py-32 lg:py-40 overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/30 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-[150px] animate-pulse delay-1000" />
+        <div className="absolute top-1/3 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-red-500/30 rounded-full blur-[100px] sm:blur-[150px] animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-yellow-500/20 rounded-full blur-[100px] sm:blur-[150px] animate-pulse delay-1000" />
       </div>
 
       
       {/* Section Header */}
-      <div className="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-center">
         {/* Content */}
         <div ref={contentRef} className="brand-content flex-1">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
-            <p className="text-xs font-bold tracking-[0.3em] text-red-500 uppercase">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+            <div className="h-[2px] w-12 sm:w-14 md:w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 uppercase">
               WHO WE ARE
             </p>
           </div>
 
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-tight mb-4 sm:mb-6">
             CULTURE 
             <span className="text-red-500"> FIRST.</span>
             <br />
             ALWAYS.
           </h2>
 
-          <div className="space-y-4 mb-8">
-            <p className="text-lg text-gray-300 leading-relaxed">
+          <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
               Born in the streets of India, SOKZ isn't just about socks. We're about making a statement. 
               Every thread tells a story of rebellion, creativity, and the unapologetic spirit of youth culture.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
               We design for the misfits, the trendsetters, the ones who'd rather stand out than blend in. 
               This isn't fashion. This is attitude.
             </p>
@@ -125,18 +125,18 @@ const BrandStory = () => {
           {/* CTA */}
           <motion.a
             href="#community"
-            className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-black text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all transform hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-2 border-white text-white font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all transform hover:scale-105 active:scale-95"
             whileHover={{ x: 5 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
             <span>JOIN THE MOVEMENT</span>
           </motion.a>
         </div>
 
         {/* Images */}
         <div ref={imageRef} className="brand-image flex-1 relative">
-          <div className="relative aspect-[4/5] lg:aspect-[3/4]">
+          <div className="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/4] lg:aspect-[3/4]">
             {/* Main Image */}
             <div className="absolute inset-0 overflow-hidden rounded-lg">
               <img
@@ -148,7 +148,7 @@ const BrandStory = () => {
             </div>
 
             {/* Floating Image */}
-            <div className="absolute -bottom-8 -right-8 w-2/3 aspect-square overflow-hidden rounded-lg border-4 border-black">
+            <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 -right-4 sm:-right-6 md:-right-8 w-1/2 sm:w-3/5 md:w-2/3 aspect-square overflow-hidden rounded-lg border-2 sm:border-4 border-black">
               <img
                 src={lifestyle2}
                 alt="Urban lifestyle"
@@ -156,16 +156,6 @@ const BrandStory = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent" />
             </div>
-
-            {/* Badge */}
-            <motion.div
-              initial={{ scale: 0, rotate: -15 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-              className="absolute top-6 left-6 px-6 py-3 bg-red-500 text-white font-black text-xs uppercase tracking-wider"
-            >
-              Since 2024
-            </motion.div>
           </div>
         </div>
       </div>

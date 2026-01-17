@@ -69,15 +69,15 @@ const GiveBack = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-container bg-background">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+    <section ref={sectionRef} className="section-container bg-background py-16 sm:py-20 md:py-24">
+      <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 items-center">
         {/* Left Content */}
         <div className="giveback-left md:col-span-5">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
-            <p className="text-xs font-bold tracking-[0.3em] text-red-500 uppercase">GIVE BACK</p>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+            <div className="h-px w-12 sm:w-14 md:w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 uppercase">GIVE BACK</p>
           </div>
-          <h2 className="headline-lg mb-6">
+          <h2 className="headline-lg mb-4 sm:mb-6">
             <span className="text-accent-red">2%</span> OF EVERY
             <br />
             ORDER GOES BACK
@@ -86,19 +86,19 @@ const GiveBack = () => {
 
         {/* Right Content */}
         <div className="giveback-right md:col-span-6 md:col-start-7">
-          <p className="body-lg text-muted-foreground mb-8">
+          <p className="body-lg text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base md:text-lg">
             To grassroots sports programs across India. No drama. No performative charity. 
             Just socks funding what matters.
           </p>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 sm:gap-8">
             <div>
-              <span className="stat-number font-display text-4xl md:text-5xl font-bold">12K+</span>
-              <p className="text-muted-foreground text-sm mt-1">Kids supported</p>
+              <span className="stat-number font-display text-3xl sm:text-4xl md:text-5xl font-bold">12K+</span>
+              <p className="text-muted-foreground text-xs sm:text-sm mt-1">Kids supported</p>
             </div>
-            <div className="w-px h-16 bg-border" />
+            <div className="w-px h-12 sm:h-14 md:h-16 bg-border" />
             <div>
-              <span className="stat-number font-display text-4xl md:text-5xl font-bold">₹8L</span>
-              <p className="text-muted-foreground text-sm mt-1">Contributed</p>
+              <span className="stat-number font-display text-3xl sm:text-4xl md:text-5xl font-bold">₹8L</span>
+              <p className="text-muted-foreground text-xs sm:text-sm mt-1">Contributed</p>
             </div>
           </div>
         </div>

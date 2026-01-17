@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, MessageCircle, Send, Instagram, Twitter, Facebook, ArrowRight, Clock, Users, Star } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Twitter, Facebook, ArrowRight, Clock, Users, Star } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
@@ -76,39 +76,26 @@ const Contact = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
       <CustomCursor />
-      
-      {/* Scattered Background Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 text-9xl font-black text-red-500/5 rotate-12">@</div>
-        <div className="absolute top-20 right-20 text-8xl font-black text-yellow-500/5 -rotate-6">#</div>
-        <div className="absolute bottom-20 left-20 text-7xl font-black text-cyan-500/5 rotate-45">@</div>
-        <div className="absolute bottom-40 right-40 text-6xl font-black text-green-500/5 -rotate-12">#</div>
-        <div className="absolute top-1/2 left-1/3 text-8xl font-black text-purple-500/5 rotate-6">@</div>
-        <div className="absolute top-1/3 right-1/3 text-7xl font-black text-pink-500/5 -rotate-45">#</div>
-        
-        {/* Floating shapes */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-yellow-500/10 rounded-full blur-xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-36 h-36 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-2000" />
-      </div>
-
       <Header />
 
-      <div className="section-container py-32">
+      <div className="section-container py-16 sm:py-20 md:py-24 lg:py-32">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <MessageCircle className="w-8 h-8 text-red-500" />
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-              GET IN
-              <span className="text-red-500"> TOUCH</span>
-            </h1>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
+            <div className="h-[2px] w-12 sm:w-14 md:w-16 bg-gradient-to-r from-red-500 to-transparent" />
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500 uppercase">
+              CONTACT
+            </p>
           </div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-tight mb-4 sm:mb-6">
+            GET IN
+            <span className="text-red-500"> TOUCH</span>
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl">
             Got questions? Feedback? Or just wanna say hi? We're all ears. 
             Hit us up and let's start a conversation.
           </p>
@@ -119,21 +106,20 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-3 gap-8 mb-20"
+          className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-3 mb-16 sm:mb-20 md:mb-24"
         >
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={index}
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, type: "spring", stiffness: 200 }}
-                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="text-center border-b border-white/10 pb-6 md:border-b-0 md:border-r md:pb-0 md:pr-6 last:border-r-0"
               >
-                <Icon className="w-8 h-8 mx-auto mb-2 text-red-500" />
-                <div className="text-3xl md:text-4xl font-black mb-1">{stat.value}</div>
-                <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black mb-2">{stat.value}</div>
+                <div className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-gray-500 uppercase">
                   {stat.label}
                 </div>
               </motion.div>
@@ -141,85 +127,77 @@ const Contact = () => {
           })}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="lg:col-span-7"
+            className="md:col-span-7"
           >
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 text-6xl font-black text-red-500/20 rotate-12">
-                SEND
-              </div>
-              <div className="bg-white/5 border border-white/10 p-8 rounded-lg">
-                <h2 className="text-2xl font-black mb-8 flex items-center gap-3">
-                  <Send className="w-6 h-6 text-red-500" />
-                  SEND US A MESSAGE
-                </h2>
+            <div className="border border-white/10 p-6 sm:p-8 md:p-10">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-6 sm:mb-8">SEND US A MESSAGE</h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="YOUR NAME"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500 transition-colors"
-                      required
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="YOUR EMAIL"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500 transition-colors"
-                      required
-                    />
-                  </div>
-                  
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+                <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
                   <input
                     type="text"
-                    name="subject"
-                    placeholder="SUBJECT"
-                    value={formData.subject}
+                    name="name"
+                    placeholder="YOUR NAME"
+                    value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 transition-colors text-sm sm:text-base"
                     required
                   />
-                  
-                  <textarea
-                    name="message"
-                    placeholder="YOUR MESSAGE"
-                    value={formData.message}
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="YOUR EMAIL"
+                    value={formData.email}
                     onChange={handleInputChange}
-                    rows={6}
-                    className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 transition-colors text-sm sm:text-base"
                     required
                   />
-                  
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 bg-white text-black font-black text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                        SENDING...
-                      </>
-                    ) : (
-                      <>
-                        SEND MESSAGE
-                        <ArrowRight className="w-5 h-5" />
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
+                </div>
+                
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="SUBJECT"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 transition-colors text-sm sm:text-base"
+                  required
+                />
+                
+                <textarea
+                  name="message"
+                  placeholder="YOUR MESSAGE"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={6}
+                  className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 transition-colors resize-none text-sm sm:text-base"
+                  required
+                />
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3 sm:py-4 bg-white text-black font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      SENDING...
+                    </>
+                  ) : (
+                    <>
+                      SEND MESSAGE
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </motion.div>
 
@@ -228,35 +206,35 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className="lg:col-span-5 space-y-8"
+            className="md:col-span-5 space-y-6 sm:space-y-8"
           >
             {/* Contact Methods */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-5">
               {contactMethods.map((method, index) => {
                 const Icon = method.icon;
+                const colorClasses = {
+                  red: "bg-red-500/20 text-red-500",
+                  yellow: "bg-yellow-500/20 text-yellow-500",
+                  cyan: "bg-cyan-500/20 text-cyan-500",
+                };
                 return (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: method.delay }}
-                    className="group relative"
+                    className="border border-white/10 p-5 sm:p-6 hover:border-white/20 transition-colors"
                   >
-                    <div className="absolute -top-4 -left-4 text-4xl font-black text-white/5 rotate-12">
-                      {index + 1}
-                    </div>
-                    <div className="bg-white/5 border border-white/10 p-6 rounded-lg hover:bg-white/10 transition-all group-hover:scale-105">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 flex items-center justify-center rounded-full bg-${method.color}-500/20`}>
-                          <Icon className={`w-6 h-6 text-${method.color}-500`} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-black text-sm tracking-wider uppercase mb-2">
-                            {method.title}
-                          </h3>
-                          <p className="text-lg font-black mb-1">{method.value}</p>
-                          <p className="text-xs text-gray-400">{method.description}</p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center ${colorClasses[method.color as keyof typeof colorClasses]}`}>
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-black text-xs sm:text-sm tracking-wider uppercase mb-2 text-gray-500">
+                          {method.title}
+                        </h3>
+                        <p className="text-base sm:text-lg md:text-xl font-black mb-1">{method.value}</p>
+                        <p className="text-xs sm:text-sm text-gray-400">{method.description}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -265,52 +243,42 @@ const Contact = () => {
             </div>
 
             {/* Social Media */}
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 text-4xl font-black text-white/5 rotate-12">
-                #
-              </div>
-              <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-                <h3 className="font-black text-sm tracking-wider uppercase mb-4">
-                  FOLLOW THE CHAOS
-                </h3>
-                <div className="space-y-3">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white transition-all group"
-                      >
-                        <Icon className="w-5 h-5" style={{ color: social.color }} />
-                        <span className="font-black text-sm">{social.label}</span>
-                        <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </a>
-                    );
-                  })}
-                </div>
+            <div className="border border-white/10 p-5 sm:p-6">
+              <h3 className="font-black text-xs sm:text-sm tracking-wider uppercase mb-4 text-gray-500">
+                FOLLOW US
+              </h3>
+              <div className="space-y-2 sm:space-y-3">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all group"
+                    >
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: social.color }} />
+                      <span className="font-black text-xs sm:text-sm">{social.label}</span>
+                      <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
             {/* Quick Response */}
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 text-4xl font-black text-white/5 rotate-12">
-                !
-              </div>
-              <div className="bg-gradient-to-r from-red-500/10 to-yellow-500/10 border border-white/10 p-6 rounded-lg">
-                <h3 className="font-black text-sm tracking-wider uppercase mb-2">
-                  QUICK RESPONSE
-                </h3>
-                <p className="text-sm text-gray-300 mb-4">
-                  Most queries answered within 2-4 hours during business hours. 
-                  Emergency? Mark your email as URGENT.
-                </p>
-                <div className="text-xs text-gray-400">
-                  <p>Business Hours: Mon-Sat, 10AM-7PM IST</p>
-                  <p>Sunday: Emergency support only</p>
-                </div>
+            <div className="border border-white/10 p-5 sm:p-6 bg-white/5">
+              <h3 className="font-black text-xs sm:text-sm tracking-wider uppercase mb-3 text-gray-500">
+                RESPONSE TIME
+              </h3>
+              <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">
+                Most queries answered within 2-4 hours during business hours. 
+                Emergency? Mark your email as URGENT.
+              </p>
+              <div className="text-xs sm:text-sm text-gray-400 space-y-1">
+                <p>Business Hours: Mon-Sat, 10AM-7PM IST</p>
+                <p>Sunday: Emergency support only</p>
               </div>
             </div>
           </motion.div>

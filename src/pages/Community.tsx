@@ -211,24 +211,24 @@ const CommunityPage = () => {
       <Header />
 
       {/* Enhanced Hero */}
-      <section className="pt-40 pb-24 section-container relative overflow-hidden">
+      <section className="pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-12 sm:pb-16 md:pb-20 lg:pb-24 section-container relative overflow-hidden">
         {/* Animated background gradient */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-red-500/30 to-transparent blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-yellow-500/20 to-transparent blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] bg-gradient-radial from-red-500/30 to-transparent blur-2xl sm:blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] bg-gradient-radial from-yellow-500/20 to-transparent blur-2xl sm:blur-3xl animate-pulse delay-1000" />
         </div>
 
         <div className="relative z-10">
           <FadeReveal direction="up">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-16 bg-gradient-to-r from-red-500 to-transparent" />
-              <p className="text-xs font-bold tracking-[0.3em] text-red-500">
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
+              <div className="h-px w-12 sm:w-14 md:w-16 bg-gradient-to-r from-red-500 to-transparent" />
+              <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500">
                 THE CREW
               </p>
             </div>
           </FadeReveal>
 
-          <h1 className="text-6xl md:text-9xl font-black mb-8 leading-none tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl md:text-9xl font-black mb-6 sm:mb-8 leading-none tracking-tighter">
             <div className="block">YOU ARE</div>
             <TextReveal splitBy="words" className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">
               THE BRAND
@@ -236,7 +236,7 @@ const CommunityPage = () => {
           </h1>
 
           <FadeReveal direction="up" delay={0.3}>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 max-w-2xl leading-relaxed">
               SOKZ is nothing without the people who wear it.{" "}
               <span className="text-white font-semibold">
                 This page is for you.
@@ -246,16 +246,16 @@ const CommunityPage = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-1/4 right-12 text-white/5 text-[200px] font-black leading-none pointer-events-none parallax-slow">
+        <div className="absolute top-1/4 right-4 sm:right-6 md:right-8 lg:right-12 text-white/5 text-[100px] sm:text-[150px] md:text-[180px] lg:text-[200px] font-black leading-none pointer-events-none parallax-slow">
           #
         </div>
       </section>
 
       {/* Enhanced Stats with color accents */}
-      <section className="py-24 section-container">
+      <section className="py-16 sm:py-20 md:py-24 section-container">
         <div
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
+          className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4 md:gap-12"
           style={{ perspective: "1000px" }}
         >
           {stats.map((stat, index) => (
@@ -266,7 +266,7 @@ const CommunityPage = () => {
             >
               <div className="relative inline-block">
                 <span
-                  className="stat-value block font-black text-5xl md:text-7xl mb-4 group-hover:scale-110 transition-transform duration-300"
+                  className="stat-value block font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300"
                   style={{ color: stat.color }}
                 >
                   {stat.value}
@@ -279,7 +279,7 @@ const CommunityPage = () => {
                 />
               </div>
               
-              <p className="text-xs font-bold tracking-[0.25em] text-gray-500 group-hover:text-white transition-colors">
+              <p className="text-[10px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.25em] text-gray-500 group-hover:text-white transition-colors">
                 {stat.label}
               </p>
             </div>
@@ -288,20 +288,20 @@ const CommunityPage = () => {
       </section>
 
       {/* Divider with animation */}
-      <div className="mx-6 md:mx-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       {/* Enhanced Community Grid */}
-      <section className="parallax-section py-24 section-container">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <section className="parallax-section py-16 sm:py-20 md:py-24 section-container">
+        <div className="flex flex-col gap-4 sm:gap-6 mb-12 sm:mb-16">
           <FadeReveal direction="up">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
-                <p className="text-xs font-bold tracking-[0.3em] text-gray-500">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-ping" />
+                <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-gray-500">
                   TAGGED
                 </p>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-600">
                   #SOKZCREW
                 </span>
@@ -314,10 +314,10 @@ const CommunityPage = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group px-8 py-4 border-2 border-white text-white font-black text-xs tracking-wider hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-3"
+              className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-black text-[10px] sm:text-xs tracking-wider hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 sm:gap-3"
             >
-              <span>FOLLOW @SOKZ.IN</span>
-              <span className="text-lg group-hover:translate-x-1 transition-transform">
+              <span className="text-xs sm:text-sm">FOLLOW @SOKZ.IN</span>
+              <span className="text-sm sm:text-base sm:text-lg group-hover:translate-x-1 transition-transform">
                 →
               </span>
             </a>
@@ -347,25 +347,25 @@ const CommunityPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               {/* Content overlay */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-end">
-                  <div className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full">
-                    <span className="text-xs font-bold">❤️ {item.likes}</span>
+                  <div className="px-2 py-1 sm:px-3 sm:py-1 bg-white/10 backdrop-blur-md rounded-full">
+                    <span className="text-[10px] sm:text-xs font-bold">❤️ {item.likes}</span>
                   </div>
                 </div>
 
                 <div>
-                  <p className="font-black text-lg mb-2">{item.handle}</p>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-300">VIEW POST</span>
-                    <div className="w-8 h-px bg-white" />
+                  <p className="font-black text-sm sm:text-base mb-2">{item.handle}</p>
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <span className="text-[10px] sm:text-xs text-gray-300">VIEW POST</span>
+                    <div className="w-6 sm:w-8 h-px bg-white" />
                   </div>
                 </div>
               </div>
 
               {/* Corner accent */}
               <div
-                className="absolute top-0 left-0 w-0 h-0 group-hover:w-16 group-hover:h-16 transition-all duration-500"
+                className="absolute top-0 left-0 w-0 h-0 group-hover:w-12 group-hover:h-12 sm:group-hover:w-14 sm:group-hover:h-14 md:group-hover:w-16 md:group-hover:h-16 transition-all duration-500"
                 style={{
                   borderTop: "2px solid white",
                   borderLeft: "2px solid white",
@@ -375,15 +375,15 @@ const CommunityPage = () => {
           ))}
         </div>
 
-        <FadeReveal direction="up" className="mt-12 text-center">
-          <button className="px-10 py-4 border-2 border-white/30 text-white font-bold text-sm tracking-wider hover:bg-white hover:text-black hover:border-white transition-all duration-300 transform hover:scale-105">
+        <FadeReveal direction="up" className="mt-8 sm:mt-10 md:mt-12 text-center">
+          <button className="px-8 sm:px-10 py-3 sm:py-4 border-2 border-white/30 text-white font-bold text-sm tracking-wider hover:bg-white hover:text-black hover:border-white transition-all duration-300 transform hover:scale-105">
             LOAD MORE →
           </button>
         </FadeReveal>
       </section>
 
       {/* Enhanced Feature Section */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-500 opacity-90" />
@@ -400,16 +400,16 @@ const CommunityPage = () => {
               </div>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 leading-tight">
               WANT TO BE
               <br />
               <span className="text-black">FEATURED?</span>
             </h2>
 
-            <p className="text-xl md:text-2xl mb-4 font-medium">
+            <p className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-medium">
               Tag us @sokz.in or use #SOKZCREW
             </p>
-            <p className="text-lg opacity-90 mb-12">
+            <p className="text-sm sm:text-base md:text-lg opacity-90 mb-8 sm:mb-10 md:mb-12">
               Best fits get featured + free socks + bragging rights
             </p>
 
@@ -417,33 +417,33 @@ const CommunityPage = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-12 py-5 bg-black text-white font-black uppercase tracking-wider text-sm border-2 border-black hover:bg-transparent hover:text-black transition-all duration-300 transform hover:scale-105 active:scale-95 gap-3"
+              className="inline-flex items-center justify-center px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-black text-white font-black uppercase tracking-wider text-sm border-2 border-black hover:bg-transparent hover:text-black transition-all duration-300 transform hover:scale-105 active:scale-95 gap-2 sm:gap-3"
             >
               <span>TAG US NOW</span>
-              <span className="text-xl">📸</span>
+              <span className="text-lg sm:text-xl">📸</span>
             </a>
           </ScaleReveal>
         </div>
 
         {/* Floating elements */}
-        <div className="parallax-fast absolute top-12 left-12 text-white/10 text-9xl font-black pointer-events-none">
+        <div className="parallax-fast absolute top-6 sm:top-8 md:top-12 left-6 sm:left-8 md:left-12 text-white/10 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black pointer-events-none">
           ★
         </div>
-        <div className="parallax-slow absolute bottom-12 right-12 text-white/10 text-9xl font-black pointer-events-none">
+        <div className="parallax-slow absolute bottom-6 sm:bottom-8 md:bottom-12 right-6 sm:right-8 md:right-12 text-white/10 text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black pointer-events-none">
           ♥
         </div>
       </section>
 
       {/* Enhanced Reviews */}
-      <section className="py-24 section-container">
+      <section className="py-16 sm:py-20 md:py-24 section-container">
         <FadeReveal direction="up" className="mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-px w-16 bg-gradient-to-r from-yellow-500 to-transparent" />
-            <p className="text-xs font-bold tracking-[0.3em] text-yellow-500">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
+            <div className="h-px w-12 sm:w-14 md:w-16 bg-gradient-to-r from-yellow-500 to-transparent" />
+            <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-yellow-500">
               REAL TALK
             </p>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight">
             WHAT THE{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-300">
               CREW
@@ -454,7 +454,7 @@ const CommunityPage = () => {
 
         <div
           ref={reviewsRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
+          className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3 md:gap-12"
           style={{ perspective: "1000px" }}
         >
           {reviews.map((review, index) => (
@@ -469,11 +469,11 @@ const CommunityPage = () => {
 
               <div className="relative border-t-2 border-white/10 pt-8 group-hover:border-yellow-500/50 transition-colors duration-500">
                 {/* Stars */}
-                <div className="flex gap-1 mb-6">
+                <div className="flex gap-0.5 sm:gap-1 mb-4 sm:mb-6">
                   {[...Array(review.rating)].map((_, i) => (
                     <span
                       key={i}
-                      className="text-yellow-500 text-lg transform group-hover:scale-125 transition-transform duration-300"
+                      className="text-yellow-500 text-sm sm:text-base md:text-lg transform group-hover:scale-125 transition-transform duration-300"
                       style={{ transitionDelay: `${i * 50}ms` }}
                     >
                       ★
@@ -482,25 +482,25 @@ const CommunityPage = () => {
                 </div>
 
                 {/* Quote */}
-                <p className="text-lg md:text-xl leading-relaxed mb-8 text-gray-300 group-hover:text-white transition-colors">
+                <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 text-gray-300 group-hover:text-white transition-colors">
                   "{review.text}"
                 </p>
 
                 {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-black text-lg">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center font-black text-sm sm:text-base md:text-lg">
                     {review.author[0]}
                   </div>
                   <div>
-                    <p className="font-black text-sm">{review.author}</p>
-                    <p className="text-gray-500 text-xs tracking-wider">
+                    <p className="font-black text-xs sm:text-sm">{review.author}</p>
+                    <p className="text-gray-500 text-[10px] sm:text-xs tracking-wider">
                       {review.location}
                     </p>
                   </div>
                 </div>
 
                 {/* Decorative quote mark */}
-                <div className="absolute top-0 right-0 text-white/5 text-8xl font-black leading-none pointer-events-none group-hover:text-white/10 transition-colors">
+                <div className="absolute top-0 right-0 text-white/5 text-6xl sm:text-7xl md:text-8xl font-black leading-none pointer-events-none group-hover:text-white/10 transition-colors">
                   "
                 </div>
               </div>
@@ -508,22 +508,22 @@ const CommunityPage = () => {
           ))}
         </div>
 
-        <FadeReveal direction="up" className="mt-16 text-center">
-          <p className="text-gray-500 mb-6">
+        <FadeReveal direction="up" className="mt-12 sm:mt-14 md:mt-16 text-center">
+          <p className="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">
             Loved by 50,000+ crew members across India
           </p>
           <div className="flex items-center justify-center gap-2">
-            <div className="flex -space-x-3">
+            <div className="flex -space-x-2 sm:-space-x-2.5 md:-space-x-3">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 border-2 border-black flex items-center justify-center font-bold text-sm"
+                  className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 border-2 border-black flex items-center justify-center font-bold text-xs sm:text-sm"
                 >
                   {String.fromCharCode(64 + i)}
                 </div>
               ))}
             </div>
-            <span className="text-sm text-gray-400 ml-2">
+            <span className="text-xs sm:text-sm text-gray-400 ml-2">
               + 49,995 more people
             </span>
           </div>

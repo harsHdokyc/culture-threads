@@ -146,7 +146,7 @@ const Drops = () => {
       {/* Enhanced Hero with layered parallax */}
       <section
         ref={heroRef}
-        className="drops-hero relative pt-24 min-h-[85vh] flex items-end pb-20 overflow-hidden"
+        className="relative section-container bg-black py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
         style={{ perspective: "1000px" }}
       >
         <div className="absolute inset-0 z-0">
@@ -163,37 +163,32 @@ const Drops = () => {
           </div>
         </div>
 
-        <div className="hero-content relative z-10 section-container w-full">
-          <div className="max-w-4xl">
+        <div className="relative z-10 section-container w-full">
+          <div className="max-w-4xl mx-auto">
             <FadeReveal direction="up" delay={0.1}>
-              <div className="flex items-center gap-4 mb-6">
-                <p className="text-xs font-bold tracking-[0.3em] text-red-500">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <p className="text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] text-red-500">
                   LIMITED RELEASES
                 </p>
               </div>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-4 sm:mb-6">
+                THE <span className="text-red-500">DROP</span>
+              </h1>
             </FadeReveal>
-
             <FadeReveal direction="up" delay={0.2}>
-              <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter">
-                THE
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient inline-block pr-4">
-                  DROPS
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <p className="text-xl md:text-2xl text-gray-300 max-w-2xl font-light leading-relaxed">
+                  Limited collections. Once they're gone, they're gone.
+                </p>
+              </div>
+            </FadeReveal>
+            <FadeReveal direction="up" delay={0.3}>
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-4 sm:mb-6">
+                NEON <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient inline-block pr-4">
+                  DELHI
                 </span>
               </h1>
             </FadeReveal>
-
-            <FadeReveal direction="up" delay={0.3}>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-2xl font-light leading-relaxed">
-                Limited collections.{" "}
-                <span className="text-white font-semibold">
-                  Once they're gone, they're gone.
-                </span>
-                <br />
-                No restocks. No regrets.
-              </p>
-            </FadeReveal>
-
             <FadeReveal direction="up" delay={0.4}>
               <div className="flex flex-wrap gap-4 mt-10">
                 <div className="px-6 py-3 border border-white/20 backdrop-blur-sm">
@@ -202,20 +197,19 @@ const Drops = () => {
                 </div>
                 <div className="px-6 py-3 border border-white/20 backdrop-blur-sm">
                   <p className="text-xs text-gray-400 mb-1">NEXT DROP</p>
-                  <p className="text-lg font-bold">FEB 2026</p>
+                  <p className="text-2xl font-bold">FEB 2026</p>
                 </div>
               </div>
             </FadeReveal>
           </div>
         </div>
-
-              </section>
+      </section>
 
       {/* Enhanced Drops List */}
       <section className="py-20 md:py-32">
-        <div className="section-container">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
+        <div className="section-container py-16 sm:py-20 md:py-24 lg:py-32">
+          <div className="mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight mb-4 sm:mb-6">
               ALL <span className="text-red-500">DROPS</span>
             </h2>
             <p className="text-gray-400 text-lg">
@@ -232,7 +226,7 @@ const Drops = () => {
               >
                 <Link
                   to={drop.status === "AVAILABLE NOW" ? `/shop` : "#"}
-                  className={`grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 md:py-20 group relative ${
+                  className={`grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-12 md:gap-12 lg:gap-16 py-12 md:py-20 group relative ${
                     drop.status !== "AVAILABLE NOW"
                       ? "opacity-40 pointer-events-none"
                       : ""
@@ -340,11 +334,11 @@ const Drops = () => {
       </section>
 
       {/* Enhanced Upcoming Section */}
-      <section className="py-32 relative overflow-hidden bg-gradient-to-b from-black via-red-950/10 to-black">
+      <section className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-b from-black via-red-950/10 to-black">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500 rounded-full blur-[120px] animate-pulse delay-1000" />
+          <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-red-500/30 rounded-full blur-[100px] sm:blur-[150px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-yellow-500/20 rounded-full blur-[100px] sm:blur-[150px] animate-pulse delay-1000" />
         </div>
 
         <div className="section-container relative z-10">
@@ -358,15 +352,16 @@ const Drops = () => {
                   </p>
                   <div className="w-2 h-2 bg-red-500 rounded-full animate-ping delay-75" />
                 </div>
+                </div>
               </div>
 
-              <h2 className="text-6xl md:text-8xl font-black mb-8 tracking-tight">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight">
                 DROP{" "}
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500 animate-gradient">
                   004
                 </span>
               </h2>
-
               <p className="text-xl md:text-2xl text-gray-400 mb-4 leading-relaxed">
                 Something raw is coming.
               </p>

@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import CustomCursor from "@/components/CustomCursor";
+import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import FeaturedDrop from "@/components/FeaturedDrop";
@@ -15,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   const mainRef = useRef<HTMLElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [animationsReady, setAnimationsReady] = useState(false);
 
   useEffect(() => {
     // Ensure page starts at top on initial load
@@ -23,72 +24,60 @@ const Index = () => {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-    
-    // Page load animation
-    const loadTimeline = gsap.timeline({
-      onComplete: () => setIsLoading(false),
-    });
+  }, []);
 
-    loadTimeline
-      .to(".loader-bar", {
-        scaleX: 1,
-        duration: 1.5,
-        ease: "power2.inOut",
-      })
-      .to(".loader", {
-        y: "-100%",
-        duration: 0.8,
-        ease: "power3.inOut",
-      });
+  useEffect(() => {
+    if (!animationsReady || !mainRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Enhanced parallax with multiple speeds
-      gsap.utils
-        .toArray<HTMLElement>(".parallax-section")
-        .forEach((section, index) => {
-          const speed = index % 2 === 0 ? "40%" : "20%";
+        // Enhanced parallax with multiple speeds
+      const parallaxSections = gsap.utils.toArray<HTMLElement>(".parallax-section");
+      parallaxSections.forEach((section, index) => {
+        if (!section) return;
+        const speed = index % 2 === 0 ? "40%" : "20%";
 
-          gsap.to(section, {
-            backgroundPositionY: speed,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          });
+        gsap.to(section, {
+          backgroundPositionY: speed,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
         });
+      });
 
       // Smooth reveal animations for sections
-      gsap.utils
-        .toArray<HTMLElement>(".reveal-section")
-        .forEach((section, index) => {
-          gsap.fromTo(
-            section,
-            {
-              y: 100,
-              opacity: 0,
+      const revealSections = gsap.utils.toArray<HTMLElement>(".reveal-section");
+      revealSections.forEach((section, index) => {
+        if (!section) return;
+        gsap.fromTo(
+          section,
+          {
+            y: 100,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              toggleActions: "play none none none",
             },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
+          }
+        );
+      });
 
       // Staggered content reveals
       gsap.utils
         .toArray<HTMLElement>(".stagger-children")
         .forEach((container) => {
           const children = container.querySelectorAll(".stagger-item");
+          if (children.length === 0) return;
 
           gsap.fromTo(
             children,
@@ -112,7 +101,9 @@ const Index = () => {
         });
 
       // Scale animations for cards/images
-      gsap.utils.toArray<HTMLElement>(".scale-in").forEach((element) => {
+      const scaleElements = gsap.utils.toArray<HTMLElement>(".scale-in");
+      scaleElements.forEach((element) => {
+        if (!element) return;
         gsap.fromTo(
           element,
           {
@@ -134,7 +125,9 @@ const Index = () => {
       });
 
       // Slide in from sides
-      gsap.utils.toArray<HTMLElement>(".slide-left").forEach((element) => {
+      const slideLeftElements = gsap.utils.toArray<HTMLElement>(".slide-left");
+      slideLeftElements.forEach((element) => {
+        if (!element) return;
         gsap.fromTo(
           element,
           {
@@ -155,7 +148,9 @@ const Index = () => {
         );
       });
 
-      gsap.utils.toArray<HTMLElement>(".slide-right").forEach((element) => {
+      const slideRightElements = gsap.utils.toArray<HTMLElement>(".slide-right");
+      slideRightElements.forEach((element) => {
+        if (!element) return;
         gsap.fromTo(
           element,
           {
@@ -177,7 +172,9 @@ const Index = () => {
       });
 
       // Rotate in animations
-      gsap.utils.toArray<HTMLElement>(".rotate-in").forEach((element) => {
+      const rotateElements = gsap.utils.toArray<HTMLElement>(".rotate-in");
+      rotateElements.forEach((element) => {
+        if (!element) return;
         gsap.fromTo(
           element,
           {
@@ -201,7 +198,9 @@ const Index = () => {
       });
 
       // Floating animations for decorative elements
-      gsap.utils.toArray<HTMLElement>(".float").forEach((element, index) => {
+      const floatElements = gsap.utils.toArray<HTMLElement>(".float");
+      floatElements.forEach((element, index) => {
+        if (!element) return;
         gsap.to(element, {
           y: -20,
           duration: 2 + index * 0.3,
@@ -212,69 +211,57 @@ const Index = () => {
       });
 
       // Progress indicator
-      gsap.to(".progress-bar", {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: mainRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5,
-        },
-      });
+      const progressBar = document.querySelector(".progress-bar");
+      if (progressBar && mainRef.current) {
+        gsap.to(progressBar, {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: mainRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.5,
+          },
+        });
+      }
 
       // Section transitions with color changes
       const sections = gsap.utils.toArray<HTMLElement>(".color-section");
-      sections.forEach((section, index) => {
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => {
-            gsap.to("body", {
-              backgroundColor: section.dataset.bgColor || "#000000",
-              duration: 0.6,
-              ease: "power2.inOut",
-            });
-          },
-          onEnterBack: () => {
-            gsap.to("body", {
-              backgroundColor: section.dataset.bgColor || "#000000",
-              duration: 0.6,
-              ease: "power2.inOut",
-            });
-          },
+      const bodyElement = document.body;
+      if (bodyElement) {
+        sections.forEach((section, index) => {
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => {
+              gsap.to(bodyElement, {
+                backgroundColor: section.dataset.bgColor || "#000000",
+                duration: 0.6,
+                ease: "power2.inOut",
+              });
+            },
+            onEnterBack: () => {
+              gsap.to(bodyElement, {
+                backgroundColor: section.dataset.bgColor || "#000000",
+                duration: 0.6,
+                ease: "power2.inOut",
+              });
+            },
+          });
         });
-      });
+      }
     }, mainRef);
-
 
     return () => {
       ctx.revert();
     };
-  }, []);
+  }, [animationsReady]);
 
   return (
     <>
-      {/* Page Loader */}
-      {isLoading && (
-        <div className="loader fixed inset-0 z-[9999] bg-black flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tight">
-              SOKZ
-            </h1>
-            <div className="relative w-64 h-1 bg-white/10 overflow-hidden">
-              <div
-                className="loader-bar absolute inset-0 bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 origin-left"
-                style={{ transform: "scaleX(0)" }}
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-4 tracking-widest">
-              LOADING EXPERIENCE
-            </p>
-          </div>
-        </div>
-      )}
+      {/* Loader */}
+      <Loader onComplete={() => setAnimationsReady(true)} />
 
       {/* Custom Cursor */}
       <CustomCursor zindex="z-[9998]" />
@@ -300,10 +287,10 @@ const Index = () => {
         className="min-h-screen bg-black text-white relative"
       >
         {/* Background ambient elements */}
-        <div className="fixed inset-0 pointer-events-none opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/30 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-[120px] animate-pulse delay-1000" />
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] animate-pulse delay-2000" />
+        <div className="fixed inset-0 pointer-events-none opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-red-500/30 rounded-full blur-[80px] sm:blur-[100px] md:blur-[150px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-yellow-500/20 rounded-full blur-[80px] sm:blur-[100px] md:blur-[150px] animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-cyan-500/20 rounded-full blur-[80px] sm:blur-[100px] md:blur-[150px] animate-pulse delay-2000" />
         </div>
 
         {/* Content */}
@@ -341,13 +328,13 @@ const Index = () => {
 
         {/* Decorative floating elements */}
         <div className="fixed pointer-events-none opacity-5">
-          <div className="float absolute top-20 right-20 text-white text-9xl font-black">
+          <div className="float absolute top-16 sm:top-20 right-16 sm:right-20 text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black">
             ★
           </div>
-          <div className="float absolute bottom-40 left-20 text-white text-9xl font-black delay-500">
+          <div className="float absolute bottom-32 sm:bottom-40 left-16 sm:left-20 text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black delay-500">
             ●
           </div>
-          <div className="float absolute top-1/2 right-40 text-white text-9xl font-black delay-1000">
+          <div className="float absolute top-1/2 right-32 sm:right-40 text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black delay-1000">
             ◆
           </div>
         </div>
@@ -403,6 +390,12 @@ const Index = () => {
             animation-delay: 2s;
           }
 
+          @media (max-width: 640px) {
+            .float {
+              display: none;
+            }
+          }
+          
           @media (max-width: 768px) {
             .float {
               display: none;
